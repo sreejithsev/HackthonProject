@@ -26,6 +26,13 @@ public class Volunteer {
     @NotNull
     private String phoneNumber;
     @NotNull
+    private String password;
+    @NotNull
     private String emailId;
+    @ElementCollection
+    @CollectionTable(name = "services", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "services")
     private List<String> services;
+
+
 }

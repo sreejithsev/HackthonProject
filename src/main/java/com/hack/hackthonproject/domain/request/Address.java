@@ -21,6 +21,5 @@ public class Address {
     private String state;
     @NotNull
     private String zipCode;
-    @NotNull
-    private String countryCode;
+
 }

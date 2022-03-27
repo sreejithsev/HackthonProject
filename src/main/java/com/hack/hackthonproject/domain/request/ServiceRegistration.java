@@ -1,0 +1,14 @@
+package com.hack.hackthonproject.domain.request;
+
+
+import lombok.Data;
+
+import javax.persistence.Entity;
+import java.util.List;
+
+@Data
+public class ServiceRegistration {
+
+    private Long volunteerId;
+    private  List<String> services ;
+}

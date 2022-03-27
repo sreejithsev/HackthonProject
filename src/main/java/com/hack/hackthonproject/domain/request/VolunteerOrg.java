@@ -6,11 +6,12 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @Entity
 @Data
-@Table(name = "volunteer")
+@Table(name = "volunteerOrg")
 public class VolunteerOrg {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,4 +23,11 @@ public class VolunteerOrg {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
+    @NotNull
+    private String password;
+    @NotNull
+    private String emailId;
+
+
 }
