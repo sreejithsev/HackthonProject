@@ -14,7 +14,6 @@ import javax.validation.Valid;
 
 @Validated
 @Controller
-
 public class RegistrationController {
 
     /** The volunteer  service. */
@@ -30,7 +29,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/volunteer-org")
-    public String volunteerOrgRegistation(@RequestBody @Valid VolunteerOrg volunteerOrg) {
+    public String volunteerOrgRegistation(@Valid VolunteerOrg volunteerOrg) {
         volunteerService.volunteerOrgRegistration(volunteerOrg);
         return "register_success";
     }

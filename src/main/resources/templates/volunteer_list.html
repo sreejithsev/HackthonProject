@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Volunteers </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Name </th>
+                    <th> Email Id </th>
+                    <th> Phone Number </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${volunteerList.empty}">
+                    <td colspan="2"> No Volunteers Available </td>
+                </tr>
+                <tr th:each="volunteer : ${volunteerList}">
+                    <td><span th:text="${volunteer.name}"> Name </span></td>
+                    <td><span th:text="${volunteer.emailId}"> Email Id </span></td>
+                    <td><span th:text="${volunteer.phoneNumber}"> Phone Number </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

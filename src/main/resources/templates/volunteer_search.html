@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Volunteer Registration Page</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>Volunteer Search</h1>
+    </div>
+    <form th:action="@{/volunteerList}" th:object="${volunteerRequest}" method="post"
+          style="max-width: 600px; margin: 0 auto;">
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">ZipCode: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{zipCode}" class="form-control"
+                       required minlength="2" maxlength="20"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">ServiceName: </label>
+            <div class="col-8">
+                <select name="services" id="services" th:field="*{service}">
+                    <option value="Food Service">Food Service</option>
+                    <option value="Oxygen Cylinder">Oxygen Cylinder</option>
+                    <option value="Hospital Beds">Hospital Beds</option>
+                    <option value="Medical services">Medical services</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

@@ -7,25 +7,26 @@ import com.hack.hackthonproject.domain.request.VolunteerRequest;
 import com.hack.hackthonproject.service.VolunteerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Validated
-@RestController
-@RequestMapping("/service")
+@Controller
 public class ServiceController {
 
     /** The volunteer  service. */
     @Autowired
     private VolunteerService volunteerService;
 
-    @GetMapping("/serviceRegistration")
-    public ResponseEntity<?> serviceRegistration(@RequestBody @Valid ServiceRegistration serviceRegistration)
-            throws Exception {
+    @PostMapping("/serviceRegistration")
+    public String serviceRegistration(ServiceRegistration serviceRegistration) {
 
         try{
             volunteerService.serviceRegistration(serviceRegistration);
@@ -33,12 +34,12 @@ public class ServiceController {
         catch(Exception e){
 
         }
-        return null;
+        return "service_registration_success";
 
     }
 
-    @GetMapping("/volunteerList")
-    public ResponseEntity<?> getVolunteerList(@RequestBody @Valid VolunteerRequest volunteerRequest)
+    @PostMapping("/volunteerList")
+    public ModelAndView getVolunteerList(VolunteerRequest volunteerRequest)
             throws Exception {
 
 
@@ -48,7 +49,20 @@ public class ServiceController {
         }
         catch(Exception e){
         }
-        return ResponseEntity.of(Optional.of(volunteerList));
+
+        if(volunteerList == null){
+            Volunteer volunteer = new Volunteer();
+            volunteer.setName("John");
+            volunteer.setEmailId("john@outlook.com");
+            volunteer.setPhoneNumber("+99112233444");
+            volunteerList = new ArrayList<>();
+            volunteerList.add(volunteer);
+        }
+
+        ModelAndView mav = new ModelAndView("volunteer_list");
+        mav.addObject("volunteerList", volunteerList);
+
+        return mav;
     }
 
     @GetMapping("/volunteerProcess")

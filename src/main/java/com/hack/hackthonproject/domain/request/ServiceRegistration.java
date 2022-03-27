@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 public class ServiceRegistration {
 
-    private Long volunteerId;
-    private  List<String> services ;
+    private String volunteerId;
+    private String services ;
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "volunteerOrg")
+@Table(name = "volunteer_orgs")
 public class VolunteerOrg {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

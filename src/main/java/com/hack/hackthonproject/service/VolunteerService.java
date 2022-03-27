@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,22 +47,21 @@ public class VolunteerService {
     public List<Volunteer> getVolunteerList(VolunteerRequest volunteerRequest) {
       //  volunteerRequest _volunteerRequest = volunteerRequestRepository.save
         String zipCode ="";
-        if(volunteerRequest.getAddress().getZipCode()!=null){
-            zipCode=volunteerRequest.getAddress().getZipCode();
+        if(volunteerRequest.getZipCode()!=null){
+            zipCode=volunteerRequest.getZipCode();
         }
-
         List<Volunteer> volunteerList = volunteerRepository.searchVolunteerList(zipCode,volunteerRequest.getService());
 
-        return volunteerList;
+        return (volunteerList == null) ? new ArrayList<>() : volunteerList;
     }
 
     public ResponseEntity<Volunteer> serviceRegistration(ServiceRegistration serviceRegistration)
     {
         Optional<Volunteer> volunteer =null;
         if(serviceRegistration.getVolunteerId()!=null)
-        volunteer =volunteerRepository.findById(serviceRegistration.getVolunteerId());
+        volunteer =volunteerRepository.findById(Long.parseLong(serviceRegistration.getVolunteerId()));
         if(serviceRegistration.getServices()!=null){
-            volunteer.get().getServices().addAll(serviceRegistration.getServices());
+            volunteer.get().getServices().add(serviceRegistration.getServices());
         }
         return new ResponseEntity<>(volunteer.get(), HttpStatus.CREATED);
     }
