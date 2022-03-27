@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @Entity
@@ -26,4 +27,5 @@ public class Volunteer {
     private String phoneNumber;
     @NotNull
     private String emailId;
+    private List<String> services;
 }
